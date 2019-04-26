@@ -23,4 +23,18 @@ router.get('/posts', (req, res) => {
     });
 });
 
+// Get post by id
+router.get('/post', (req, res) => {
+  // Get posts from the mock api
+  // This should ideally be replaced with a service that connects to MongoDB
+  var postID = req.body.id;
+  axios.get(`${API}/posts/${postID}`)
+    .then(post => {
+      res.status(200).json(post.data);
+    })
+    .catch(error => {
+      res.status(500).send(error)
+    });
+});
+
 module.exports = router;
