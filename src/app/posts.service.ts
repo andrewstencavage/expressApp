@@ -9,13 +9,12 @@ export class PostsService {
 
   // Get all posts from the API
   getAllPosts() {
-    return this.http.get('/api/posts')
+    return this.http.get('/api/posts/')
       .pipe(map(res => res.json()));
   }
 
   getPost(postID){
-    return this.http.post('/api/post',{
-      postID:postID
-    }).pipe(map(res => res.json()));
+    return this.http.get(`/api/post/${postID}`)
+      .pipe(map(res => res.json()));
   }
 }
